@@ -4,13 +4,13 @@ import MainPage from '../pages/MainPage'
 
 const router = createBrowserRouter([
     {
-        path: "/movies",
-        element: <MainPage></MainPage>
-    },
-    {
         path: "/movies/:id",
         element: <DetailPage></DetailPage>
-    }
+    },
+    {
+        path: "*",
+        element: <MainPage></MainPage>
+    },
 ])
 
 export default router

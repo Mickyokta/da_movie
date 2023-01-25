@@ -1,5 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 function MovieCard({ movie, index }) {
 
     const [genres, setGenres] = useState([])
@@ -32,13 +33,13 @@ function MovieCard({ movie, index }) {
                         <div className="menu">
                             <i className="material-icons"></i>
                         </div>
-                        <a href={`/movies/${movie.id}`}>
+                        <Link to={`/movies/${movie.id}`}>
                             <div className="movie-img" id={`movie-${movie.id}`} />
-                        </a>
+                        </Link>
                         <div className="text-movie-cont">
                             <div className="mr-grid">
                                 <div className="col1">
-                                    <h1>{movie.title}</h1>
+                                    <h1 className="movie-title">{movie.title}</h1>
                                     <ul className="movie-gen">
                                         {
                                             movie.adult ?
@@ -84,13 +85,13 @@ function MovieCard({ movie, index }) {
                             </div>
                             <div className="mr-grid action-row">
                                 <div className="col2">
-                                    <div className="watch-btn justify-center">
+                                    {/* <div className="watch-btn">
                                         <a href={`/movies/${movie.id}`}>
                                             <h3>
                                                 <i className="material-icons"></i>DETAILS
                                             </h3>
                                         </a>
-                                    </div>
+                                    </div> */}
                                 </div>
                                 {/* <div className="col6 action-btn">
                                     <i className="material-icons">&#xE161;</i>

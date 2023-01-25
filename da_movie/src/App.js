@@ -1,5 +1,5 @@
 import './App.css';
-import { RouterProvider } from 'react-router-dom';
+import { Navigate, Router, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import router from './routes';
 import store from './stores/store';

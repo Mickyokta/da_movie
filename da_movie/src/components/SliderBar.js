@@ -36,7 +36,7 @@ function SliderBar() {
         <>
             <div className="slider-body">
                 <div id="image-track" data-mouse-down-at="0" data-previous-percentage="0">
-                    <img className="image" src="https://lh6.googleusercontent.com/B0uQRPzgf2AX6EVvlqNWwV7ql2-TbAuWbJcnkHuC_uzEtG0viA6__4_v-bfdas4iM8MqIm8wcoDeaLRxugVFycbVvaelnagmzAsH9-ug-y0X2BxvEjFfhavM_fvWHDEnNKBFamG9=s0" draggable="false" />
+                    {/* <img className="image" src="https://lh6.googleusercontent.com/B0uQRPzgf2AX6EVvlqNWwV7ql2-TbAuWbJcnkHuC_uzEtG0viA6__4_v-bfdas4iM8MqIm8wcoDeaLRxugVFycbVvaelnagmzAsH9-ug-y0X2BxvEjFfhavM_fvWHDEnNKBFamG9=s0" draggable="false" /> */}
                     <img className="image" src="https://livijumpa2.files.wordpress.com/2013/12/impossible.jpg" draggable="false" />
                     <img className="image" src="https://preview.redd.it/atyf1poo8oe31.jpg?auto=webp&s=d28749798085f4b4947e99c167dc3b2ab1f04e30" draggable="false" />
                     <img className="image" src="https://i0.wp.com/www.heyuguys.com/images/2015/10/star-wars-the-force-awakens-poster-landscape.jpg?fit=1536%2C864&ssl=1" draggable="false" />

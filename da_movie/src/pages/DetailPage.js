@@ -1,7 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
-import SliderBar from "../components/SliderBar"
+import { Link, useParams } from "react-router-dom"
 let stars = ""
 
 function DetailPage() {
@@ -83,6 +82,14 @@ function DetailPage() {
             <>
                 {/* <div className="slider-body"> */}
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+                <div>
+                    <br />
+                    <button className="btn">
+                        <Link to="/">
+                            <span className="buy">Home</span>
+                        </Link>
+                    </button>
+                </div>
                 <div id="container">
                     <div className="product-details">
                         <h1>{movie.title}</h1>
@@ -113,14 +120,17 @@ function DetailPage() {
                         <img src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`} />
                         <div className="info">
                             <ul>
-                                <li><strong>Production Company: </strong>
-                                    {
-                                        movie.production_companies.map((el, i) => {
-                                            if (!movie.production_companies[i + 1]) return (el.name + ".")
-                                            return (el.name + ", ")
-                                        })
-                                    }
-                                </li>
+                                {
+                                    movie.production_companies.length > 0 &&
+                                    <li><strong>Production Company: </strong>
+                                        {
+                                            movie.production_companies.map((el, i) => {
+                                                if (!movie.production_companies[i + 1]) return (el.name + ".")
+                                                return (el.name + ", ")
+                                            })
+                                        }
+                                    </li>
+                                }
                                 <li><strong>Production Country : </strong>
                                     {
                                         movie.production_countries.map((el, i) => {

@@ -1,28 +1,16 @@
+import { Link } from "react-router-dom"
+
 function HeadBar() {
     return (
         <div id="navigation">
             <ul>
                 <li>
-                    <a className="active" href="#">
+                    <Link className="active" to="/">
                         HOME
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#">NEWS</a>
-                </li>
-                <li>
-                    <a href="#">IN THEATERS</a>
-                </li>
-                <li>
-                    <a href="#">COMING SOON</a>
-                </li>
-                <li>
-                    <a href="#">CONTACT</a>
-                </li>
-                <li>
-                    <h4 className="">
-                        DA MOVIE
-                    </h4>
+                    <p>DA MOVIE</p>
                 </li>
             </ul>
         </div>

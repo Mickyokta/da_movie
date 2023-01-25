@@ -1,5 +1,5 @@
 import SliderBar from "../components/SliderBar"
-import { fetchMovies, searchMovie } from "../stores/actions/movieAction"
+import { fetchMovies, nextPageMovies, searchMovie } from "../stores/actions/movieAction"
 import { useEffect, useState } from "react"
 import "../css/style.css"
 import { useDispatch, useSelector } from "react-redux"
@@ -7,6 +7,7 @@ import useDebounce from '../hooks/useDebounce';
 import HeadBar from "../components/HeadBar"
 import MovieCard from "../components/MovieCard"
 import InfiniteScroll from 'react-infinite-scroll-component'
+import { Link } from "react-router-dom"
 
 function MainPage() {
     const dispatch = useDispatch()
@@ -25,9 +26,8 @@ function MainPage() {
     useDebounce(() => {
         if (search.length) {
             dispatch(searchMovie(search))
-            setSearch('')
         }
-    }, [movies, search], 2000)
+    }, [search], 1500)
 
     function handleSearch(e) {
         setSearch(e.target.value);
@@ -39,31 +39,32 @@ function MainPage() {
                 <div id="shell">
                     <div id="header">
                         <HeadBar />
+                        <SliderBar></SliderBar>
                         <div id="sub-navigation">
                             <ul>
                                 <li>
-                                    <a href="#" onClick={(e) => {
+                                    <a onClick={(e) => {
                                         e.preventDefault()
                                         dispatch(fetchMovies("now_playing"))
                                         setCategory("now_playing")
                                     }}>NOW PLAYING</a>
                                 </li>
                                 <li>
-                                    <a href="#" onClick={(e) => {
+                                    <a onClick={(e) => {
                                         e.preventDefault()
                                         dispatch(fetchMovies("popular"))
                                         setCategory("popular")
                                     }}>POPULAR</a>
                                 </li>
                                 <li>
-                                    <a href="#" onClick={(e) => {
+                                    <a onClick={(e) => {
                                         e.preventDefault()
                                         dispatch(fetchMovies("top_rated"))
                                         setCategory("top_rated")
                                     }}>TOP RATED</a>
                                 </li>
                                 <li>
-                                    <a href="#" onClick={(e) => {
+                                    <a onClick={(e) => {
                                         e.preventDefault()
                                         dispatch(fetchMovies("upcoming"))
                                         setCategory("upcoming")
@@ -82,32 +83,33 @@ function MainPage() {
                                         onChange={handleSearch}
                                         autoComplete="off"
                                     />
-                                    <input type="submit" className="search-button" onSubmit={(e) => e.preventDefault()}></input>
+                                    {/* <input type="submit" className="search-button" onSubmit={(e) => e.preventDefault()}></input> */}
                                 </form>
                             </div>
                         </div>
                     </div>
                     <div id="main">
                         <div id="content">
-                            <SliderBar></SliderBar>
                             <div className="">
-                                <div className="head">
-                                    <h1>MOVIES</h1>
-                                </div>
-                                <div className="card-box">
-                                    {/* <InfiniteScroll
+                                <div className="card-box justify-center">
+                                    {/* state awal di concat atau push tambah di reducer */}
+                                    <InfiniteScroll
                                         dataLength={movies.length}
                                         next={
-                                            search ? dispatch(searchMovie(search, page + 1)) : dispatch(fetchMovies(category, page + 1))
+                                            () => {
+                                                console.log(page + 1, "101 main page")
+                                                dispatch(nextPageMovies(movies, category, page + 1))
+                                                setPage(page + 1)
+                                            }
                                         }
                                         hasMore={true}
-                                        loader={<h4>Loading...</h4>}
+                                        // loader={<h4>Loading...</h4>}
                                         endMessage={
                                             <p style={{ textAlign: 'center' }}>
                                                 <b>Yay! You have seen it all</b>
                                             </p>
                                         }
-                                    > */}
+                                    />
                                     {
                                         movies.map((el, i) => {
                                             return (
@@ -197,7 +199,7 @@ function MainPage() {
                     </div>
                     <div id="footer">
                         <p className="lf">
-                            Copyright © 2022 <a href="#">Da Movie</a> - All Rights Reserved
+                            Copyright © 2022 <a>Da Movie</a> - All Rights Reserved
                         </p>
                         <div style={{ clear: "both" }} />
                     </div>
